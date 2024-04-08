@@ -1,6 +1,6 @@
 # Incluir el archivo HELP.md y la carpeta target
 HELP.md
-target/
+#target/
 
 # Ignorar todo en la carpeta target, excepto el archivo maven-wrapper.jar
 !.mvn/wrapper/maven-wrapper.jar
