@@ -3,9 +3,9 @@ services:
     image: mysql
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: labruja12
       MYSQL_USER: root
-      MYSQL_PASSWORD: root
+      MYSQL_PASSWORD: labruja12
     ports:
       - 3307:3306
     volumes:
@@ -18,7 +18,7 @@ services:
     environment:
       MYSQL_HOST: mysqldb 
       MYSQL_USER: root
-      MYSQL_PASSWORD: root
+      MYSQL_PASSWORD: labruja12
       MYSQL_PORT: 3306
     ports:
       - 9080:8080
