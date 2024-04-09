@@ -1,5 +1,6 @@
 FROM openjdk:21
 COPY target/springboot-mysql-docker.jar springboot-mysql-docker.jar
+# RUN mvn install
 ENTRYPOINT [ "java", "-jar", "springboot-mysql-docker.jar" ]
 # FROM openjdk:21 AS build
 
