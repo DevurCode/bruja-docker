@@ -1,6 +1,11 @@
+FROM maven:3.8.4-openjdk-21-slim AS build
+WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean install
+
 FROM openjdk:21
-COPY target/springboot-mysql-docker.jar springboot-mysql-docker.jar
-# RUN mvn install
+COPY --from=build /app/target/springboot-mysql-docker.jar springboot-mysql-docker.jar
 ENTRYPOINT [ "java", "-jar", "springboot-mysql-docker.jar" ]
 # FROM openjdk:21 AS build
 
