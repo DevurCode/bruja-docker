@@ -1,17 +1,16 @@
 # Etapa de construcción
+FROM openjdk-21 AS build
+WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean package -DskipTests
 
-FROM eclipse-temurin:21
-COPY springboot-mysql-docker.jar springboot-mysql-docker.jar
-ENTRYPOINT ["java","-jar","springboot-mysql-docker.jar"]
-
-# FROM eclipse-temurin:21
-# ARG JAR_FILE=target/*.jar
-# COPY ${JAR_FILE} app.jar
-# ENTRYPOINT [ "java", "-jar", "/app.jar" ]
-
-# RUN mkdir /opt/app
-# COPY springboot-mysql-docker.jar /opt/app
-# CMD ["java", "-jar", "/opt/app/springboot-mysql-docker.jar"]
+# Etapa final
+FROM openjdk:21
+WORKDIR /app
+COPY --from=build /app/target/springboot-mysql-docker.jar springboot-mysql-docker.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "springboot-mysql-docker.jar"]
 
 # WORKDIR /app
 
