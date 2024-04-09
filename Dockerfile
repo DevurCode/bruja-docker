@@ -5,8 +5,10 @@ COPY src ./src
 RUN mvn install
 
 FROM openjdk:21
+WORKDIR /app
 COPY --from=build /app/target/springboot-mysql-docker.jar springboot-mysql-docker.jar
-ENTRYPOINT [ "java", "-jar", "springboot-mysql-docker.jar" ]
+COPY src/main/resources/application.properties application.properties
+ENTRYPOINT ["java", "-jar", "springboot-mysql-docker.jar"]
 # FROM openjdk:21 AS build
 
 # WORKDIR /app
