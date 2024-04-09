@@ -1,9 +1,16 @@
+# Etapa de construcción
+FROM maven:3.8.4-openjdk-21 AS build
+WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean package -DskipTests
+
+# Etapa final
 FROM openjdk:21
-VOLUME /tmp
+WORKDIR /app
+COPY --from=build /app/target/springboot-mysql-docker.jar springboot-mysql-docker.jar
 EXPOSE 8080
-ARG JAR_FILE=target/springboot-mysql-docker.jar
-ADD ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]# FROM openjdk:21 AS build
+ENTRYPOINT ["java", "-jar", "springboot-mysql-docker.jar"]
 
 # WORKDIR /app
 
