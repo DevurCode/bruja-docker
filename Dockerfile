@@ -1,33 +1,17 @@
-# Etapa de construcción
-FROM ubuntu:latest AS build
+# Utiliza la imagen base de OpenJDK 21
+FROM eclipse-temurin:21
 
-RUN apt-get update
-RUN apt-get install openjdk-17-jdk -y
-COPY . .
+# Crea un directorio para la aplicación
+RUN mkdir /opt/app
 
-RUN ./gradlew bootJar --no-daemon
+# Copia el archivo JAR precompilado (japp.jar) a la ubicación adecuada
+COPY japp.jar /opt/app
 
-# Etapa de producción
-FROM eclipse-temurin:21-jre-alpine
+# Establece el directorio de trabajo
+WORKDIR /opt/app
 
-# Crear un usuario no root
-RUN addgroup -S spring && adduser -S spring -G spring
-
-# Copiar el archivo JAR de Spring
-COPY target/*.jar /opt/springboot-mysql-docker.jar
-
-# Establecer el usuario no root como el usuario predeterminado
-USER spring:spring
-
-# Establecer el directorio de trabajo
-WORKDIR /opt
-
-# Punto de entrada para ejecutar la aplicación Spring Boot
-ENTRYPOINT ["java", "-jar", "springboot-mysql-docker.jar"]
-
-# Exponer el puerto 8080 al mundo exterior
-EXPOSE 8080
-
+# Ejecuta la aplicación Spring Boot
+CMD ["java", "-jar", "japp.jar"]
 
 
 
