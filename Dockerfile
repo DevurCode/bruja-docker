@@ -5,13 +5,13 @@ FROM eclipse-temurin:21
 RUN mkdir /opt/app
 
 # Copia el archivo JAR precompilado (japp.jar) a la ubicación adecuada
-COPY japp.jar /opt/app
+COPY springboot-mysql-docker.jar /opt/app
 
 # Establece el directorio de trabajo
 WORKDIR /opt/app
 
 # Ejecuta la aplicación Spring Boot
-CMD ["java", "-jar", "japp.jar"]
+CMD ["java", "-jar", "springboot-mysql-docker.jar"]
 
 
 
