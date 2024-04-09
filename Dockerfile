@@ -1,17 +1,6 @@
-# Utiliza la imagen base de OpenJDK 21
-FROM eclipse-temurin:21
-
-# Crea un directorio para la aplicación
-RUN mkdir /opt/app
-
-# Copia el archivo JAR precompilado (japp.jar) a la ubicación adecuada
-COPY springboot-mysql-docker.jar /opt/app
-
-# Establece el directorio de trabajo
-WORKDIR /opt/app
-
-# Ejecuta la aplicación Spring Boot
-CMD ["java", "-jar", "springboot-mysql-docker.jar"]
+FROM openjdk:21
+ADD target/springboot-mysql-docker.jar springboot-mysql-docker.jar
+ENTRYPOINT ["java", "-jar", "springboot-mysql-docker.jar"]
 
 
 
