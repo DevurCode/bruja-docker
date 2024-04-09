@@ -1,16 +1,8 @@
 # Etapa de construcción
-FROM maven:3.8.4-openjdk-17 AS build
-WORKDIR /app
-COPY pom.xml .
-COPY src ./src
-RUN mvn clean package -DskipTests
-
-# Etapa final
-FROM openjdk:17
-WORKDIR /app
-COPY --from=build /app/target/springboot-mysql-docker.jar springboot-mysql-docker.jar
-EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "springboot-mysql-docker.jar"]
+FROM eclipse-temurin:21
+RUN mkdir /opt/app
+COPY springboot-mysql-docker.jar /opt/app
+CMD ["java", "-jar", "/opt/app/springboot-mysql-docker.jar"]
 
 # WORKDIR /app
 
