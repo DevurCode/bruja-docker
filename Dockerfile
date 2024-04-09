@@ -1,8 +1,12 @@
 # Etapa de construcción
 FROM eclipse-temurin:21
-RUN mkdir /opt/app
-COPY springboot-mysql-docker.jar /opt/app
-CMD ["java", "-jar", "/opt/app/springboot-mysql-docker.jar"]
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT [ "java", "-jar", "/app.jar" ]
+
+# RUN mkdir /opt/app
+# COPY springboot-mysql-docker.jar /opt/app
+# CMD ["java", "-jar", "/opt/app/springboot-mysql-docker.jar"]
 
 # WORKDIR /app
 
