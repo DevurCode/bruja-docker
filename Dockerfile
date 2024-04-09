@@ -1,8 +1,13 @@
 # Etapa de construcción
+
 FROM eclipse-temurin:21
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} app.jar
-ENTRYPOINT [ "java", "-jar", "/app.jar" ]
+COPY springboot-mysql-docker.jar springboot-mysql-docker.jar
+ENTRYPOINT ["java","-jar","springboot-mysql-docker.jar"]
+
+# FROM eclipse-temurin:21
+# ARG JAR_FILE=target/*.jar
+# COPY ${JAR_FILE} app.jar
+# ENTRYPOINT [ "java", "-jar", "/app.jar" ]
 
 # RUN mkdir /opt/app
 # COPY springboot-mysql-docker.jar /opt/app
