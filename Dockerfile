@@ -1,5 +1,5 @@
 # Etapa de construcción
-FROM openjdk-17 AS build
+FROM openjdk-21 AS build
 WORKDIR /app
 COPY pom.xml .
 COPY src ./src
