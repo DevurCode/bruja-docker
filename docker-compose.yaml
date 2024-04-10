@@ -1,3 +1,5 @@
+version: '3'
+
 services:
   db:
     image: mysql
@@ -16,11 +18,14 @@ services:
       dockerfile: Dockerfile
     restart: always
     environment:
-      MYSQL_HOST: mysqldb 
-      MYSQL_USER: root
-      MYSQL_PASSWORD: labruja12
-      MYSQL_PORT: 3306
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/db_labrujastore?useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: labruja12
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
     ports:
       - 9080:8080
+    depends_on:
+      - db
+
 volumes:
-  mysqldata: 
+  mysqldata:

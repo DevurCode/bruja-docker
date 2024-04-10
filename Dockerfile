@@ -2,7 +2,10 @@ FROM openjdk:21
 ADD target/springboot-mysql-docker.jar springboot-mysql-docker.jar
 ENTRYPOINT ["java", "-jar", "springboot-mysql-docker.jar"]
 
-
+# Set environment variables
+ENV SPRING_DATASOURCE_URL jdbc:mysql://db:3306/db_labrujastore?useSSL=false
+ENV SPRING_DATASOURCE_USERNAME root
+ENV SPRING_DATASOURCE_PASSWORD labruja12
 
 
 

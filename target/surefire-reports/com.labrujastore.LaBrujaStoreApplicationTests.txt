@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.labrujastore.LaBrujaStoreApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 13.04 s -- in com.labrujastore.LaBrujaStoreApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 18.21 s -- in com.labrujastore.LaBrujaStoreApplicationTests
